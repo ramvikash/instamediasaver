@@ -10,7 +10,7 @@ import puppeteer from 'puppeteer';
 const app = express();
 const browser = await puppeteer.launch({
   headless: true,
-  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome', // or /usr/bin/chromium
+  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium', // or /usr/bin/chromium
   //executablePath: puppeteer.executablePath(), // ✅ dynamically uses installed Chrome
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
