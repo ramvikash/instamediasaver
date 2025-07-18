@@ -12,7 +12,7 @@ const app = express();
 
 const browser = await puppeteer.launch({
   headless: true, // Recommended for server environments
-  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium', // Use this path first
+  //executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium', // Use this path first
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
 
