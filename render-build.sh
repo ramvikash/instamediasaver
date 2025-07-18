@@ -4,7 +4,8 @@
 set -o errexit
 
 echo "--- Installing Node.js dependencies ---"
-npm install
+# Ensure all dependencies, including puppeteer-core, are installed first
+npm install --production # --production if you only need production dependencies, otherwise just npm install
 
 # Define the Puppeteer cache directory within the project's build path
 # This ensures it's cached between deploys
@@ -17,8 +18,16 @@ mkdir -p $PUPPETEER_CACHE_DIR
 export PUPPETEER_CACHE_DIR=$PUPPETEER_CACHE_DIR
 
 echo "--- Installing Puppeteer browser (Chromium) ---"
-# This command downloads the specific Chromium version Puppeteer expects
-npx puppeteer-core browsers install chromium # Use 'chromium' here, or 'chrome' if you prefer
+# Use the direct path to the puppeteer executable within node_modules
+# This bypasses potential npx resolution issues and directly calls the script
+# The exact path might vary slightly based on puppeteer-core version,
+# but it's usually in .bin or within the lib directory.
+# Let's try the common .bin path first.
+/opt/render/project/src/node_modules/.bin/puppeteer browsers install chromium
+
+# Alternative if the above fails:
+# Try running it directly from the package
+# node /opt/render/project/src/node_modules/puppeteer-core/lib/cjs/cli.js browsers install chromium
 
 # If you have a build step (like React/Vue/Angular build), uncomment this:
 # echo "--- Running application build (if any) ---"
