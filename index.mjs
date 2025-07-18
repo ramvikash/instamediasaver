@@ -9,9 +9,17 @@ import scraperRoutes from './routes/scraperRoutes.js';
 import puppeteer from 'puppeteer-core';
 
 const app = express();
+
 const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  headless: true, // Recommended for server environments
+  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium', // Use this path first
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
+
+// const browser = await puppeteer.launch({
+//     args: ['--no-sandbox', '--disable-setuid-sandbox'],
+// });
+
 // const browser = await puppeteer.launch({
 //   headless: true,
 //   executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium', // or /usr/bin/chromium
