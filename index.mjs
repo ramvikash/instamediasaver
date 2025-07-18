@@ -5,7 +5,7 @@
 import express from 'express';
 import cors from 'cors';
 import scraperRoutes from './routes/scraperRoutes.js';
-import puppeteer from 'puppeteer';
+//import puppeteer from 'puppeteer';
 import puppeteer from 'puppeteer-core';
 
 const app = express();
