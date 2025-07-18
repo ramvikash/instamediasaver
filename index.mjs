@@ -4,7 +4,7 @@
 //const puppeteer = required('puppeteer');
 import express from 'express';
 import cors from 'cors';
-import scraperRoutes from './routes/scraperRoutes';
+import scraperRoutes from './routes/scraperRoutes.js';
 import puppeteer from 'puppeteer';
 
 const app = express();
