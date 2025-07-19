@@ -11,7 +11,7 @@
   "main": "index.mjs",
   "type": "module",
   "scripts": {
-    "start": "index.mjs"
+    "start": "node index.mjs"
   },
   "repository": {
     "type": "git",
