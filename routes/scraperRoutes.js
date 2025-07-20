@@ -1,7 +1,8 @@
 const express = require('express');
-const { scrapeInstagram } = require('../controllers/scraperController');
-
 const router = express.Router();
-router.post('/', scrapeInstagram);
+const scraperController = require('../controllers/scraperController');
+
+
+router.post('/scrape', scraperController.scrapeInstagramVideo);
 
 module.exports = router;

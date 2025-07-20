@@ -1,18 +1,19 @@
-const { extractMedia } = require('../services/puppeteerService');
+const scraperService = require('../services/puppeteerService');
 
-const scrapeInstagram = async (req, res) => {
+exports.scrapeInstagramVideo = async (req, res) => {
+  const { url } = req.body;
+
+  if (!url) return res.status(400).json({ error: 'Missing Instagram URL' });
+
   try {
-    const { url } = req.body;
+    const data = await scraperService.scrape(url);
+    if (!data.video) return res.status(404).json({ error: 'Video not found' });
 
-    if (!url || !url.includes('instagram.com')) {
-      return res.status(400).json({ success: false, error: 'Invalid Instagram URL' });
-    }
-
-    const data = await extractMedia(url);
-    res.json({ success: true, data });
+    res.json(data);
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    console.error('Scraping failed:', err);
+    res.status(500).json({ error: 'Scraping failed' });
   }
 };
 
-module.exports = { scrapeInstagram };
+//module.exports =  scrapeInstagramVideo ;
